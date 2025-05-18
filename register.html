@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | Premium Access</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #533d7b);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            filter: blur(1px);
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1000px) translateX(200px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .signup-container {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 40px;
+            width: 480px;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeInUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-origin: center;
+            transition: all 0.4s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .signup-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.5s ease;
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.2);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(255, 255, 255, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+            }
+        }
+
+        .logo h2 {
+            color: #fff;
+            margin-top: 20px;
+            font-weight: 600;
+            font-size: 24px;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .name-fields {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .name-fields .input-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            font-size: 16px;
+            color: #fff;
+            outline: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s ease;
+        }
+
+        .input-group input:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-group input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .input-group i {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 18px;
+        }
+
+        .password-strength {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            margin-top: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .password-strength::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0%;
+            background: #f72585;
+            transition: width 0.4s;
+        }
+
+        .password-strength[data-strength="weak"]::before {
+            width: 30%;
+            background: #f72585;
+        }
+
+        .password-strength[data-strength="medium"]::before {
+            width: 60%;
+            background: #f8961e;
+        }
+
+        .password-strength[data-strength="strong"]::before {
+            width: 100%;
+            background: #4cc9f0;
+        }
+
+        .password-match {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 13px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .password-match.valid {
+            color: #4cc9f0;
+            display: block;
+        }
+
+        .password-match.invalid {
+            color: #f72585;
+            display: block;
+        }
+
+        .terms {
+            display: flex;
+            align-items: center;
+            margin: 25px 0;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+        }
+
+        .terms input {
+            margin-right: 8px;
+            accent-color: #4cc9f0;
+            width: 16px;
+            height: 16px;
+        }
+
+        .terms a {
+            color: #4cc9f0;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .terms a:hover {
+            text-decoration: underline;
+        }
+
+        .signup-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .signup-btn:hover {
+            background: linear-gradient(45deg, #3a0ca3, #4361ee);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(67, 97, 238, 0.6);
+        }
+
+        .signup-btn:active {
+            transform: translateY(0);
+        }
+
+        .signup-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .signup-btn:hover::before {
+            left: 100%;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 25px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 15px;
+        }
+
+        .login-link a {
+            color: #4cc9f0;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .login-link a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #4cc9f0;
+            transition: width 0.3s;
+        }
+
+        .login-link a:hover::after {
+            width: 100%;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 576px) {
+            .signup-container {
+                width: 90%;
+                padding: 30px 20px;
+            }
+            
+            .logo img {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .logo h2 {
+                font-size: 20px;
+            }
+            
+            .name-fields {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+
+    <div class="signup-container">
+        <div class="logo">
+            <!-- Replace with your actual logo -->
+            <img src="assets/img/logo.png" alt="Company Logo">
+            <h2>Create Your Account</h2>
+            <p>Join our community today</p>
+        </div>
+
+        <form id="signupForm">
+            <div class="name-fields">
+                <div class="input-group">
+                    <input type="text" id="firstName" placeholder="First Name" required>
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="middleName" placeholder="Middle Name">
+                    <i class="fas fa-user"></i>
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <input type="text" id="lastName" placeholder="Last Name" required>
+                <i class="fas fa-user"></i>
+            </div>
+            
+            <div class="input-group">
+                <input type="email" id="email" placeholder="Email Address" required>
+                <i class="fas fa-envelope"></i>
+            </div>
+            
+            <div class="input-group">
+                <input type="tel" id="phone" placeholder="Phone Number" required>
+                <i class="fas fa-phone"></i>
+            </div>
+            
+            <div class="input-group">
+                <input type="password" id="password" placeholder="Password" required>
+                <i class="fas fa-lock"></i>
+                <div class="password-strength" id="passwordStrength"></div>
+            </div>
+            
+            <div class="input-group">
+                <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+                <i class="fas fa-lock"></i>
+                <div class="password-match" id="passwordMatch"></div>
+            </div>
+            
+            <div class="terms">
+                <input type="checkbox" id="agreeTerms" required>
+                <label for="agreeTerms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+            </div>
+
+            <button type="submit" class="signup-btn">Create Account</button>
+        </form>
+
+        <div class="login-link">
+            Already have an account? <a href="login.html">Log in</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create floating particles
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size between 2px and 6px
+                const size = Math.random() * 4 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.bottom = `-${size}px`;
+                
+                // Random animation duration between 10s and 25s
+                const duration = Math.random() * 15 + 10;
+                particle.style.animationDuration = `${duration}s`;
+                
+                // Random delay
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+            
+            // Password strength indicator
+            const passwordInput = document.getElementById('password');
+            const passwordStrength = document.getElementById('passwordStrength');
+            
+            passwordInput.addEventListener('input', function() {
+                const password = this.value;
+                let strength = 'weak';
+                
+                if (password.length >= 12 && /[A-Z]/.test(password) && /[0-9]/.test(password) && /[^A-Za-z0-9]/.test(password)) {
+                    strength = 'strong';
+                } else if (password.length >= 8) {
+                    strength = 'medium';
+                }
+                
+                passwordStrength.setAttribute('data-strength', strength);
+            });
+            
+            // Password match checker
+            const confirmPassword = document.getElementById('confirmPassword');
+            const passwordMatch = document.getElementById('passwordMatch');
+            
+            confirmPassword.addEventListener('input', function() {
+                if (this.value.length === 0) {
+                    passwordMatch.className = 'password-match';
+                    passwordMatch.textContent = '';
+                    return;
+                }
+                
+                if (this.value === passwordInput.value) {
+                    passwordMatch.className = 'password-match valid';
+                    passwordMatch.innerHTML = '<i class="fas fa-check"></i> Passwords match';
+                } else {
+                    passwordMatch.className = 'password-match invalid';
+                    passwordMatch.innerHTML = '<i class="fas fa-times"></i> Passwords do not match';
+                }
+            });
+            
+            // Form submission with enhanced feedback
+            const signupForm = document.getElementById('signupForm');
+            const signupBtn = signupForm.querySelector('button');
+            
+            signupForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const firstName = document.getElementById('firstName').value;
+                const middleName = document.getElementById('middleName').value;
+                const lastName = document.getElementById('lastName').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const password = passwordInput.value;
+                const confirmPass = confirmPassword.value;
+                
+                // Validate password match
+                if (password !== confirmPass) {
+                    passwordMatch.className = 'password-match invalid';
+                    passwordMatch.innerHTML = '<i class="fas fa-times"></i> Passwords must match';
+                    return;
+                }
+                
+                // Show loading animation
+                signupBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating Account...';
+                signupBtn.style.background = 'linear-gradient(45deg, #3a0ca3, #7209b7)';
+                
+                // Simulate API call with timeout
+                setTimeout(() => {
+                    // Success scenario
+                    signupBtn.innerHTML = '<i class="fas fa-check"></i> Account Created!';
+                    signupBtn.style.background = 'linear-gradient(45deg, #4cc9f0, #4895ef)';
+                    
+                    // Create celebration particles
+                    createCelebrationParticles();
+                    
+                    // Redirect after successful signup
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html';
+                    }, 1500);
+                }, 2000);
+            });
+            
+            // Celebration particles function
+            function createCelebrationParticles() {
+                const colors = ['#4cc9f0', '#4895ef', '#4361ee', '#3a0ca3', '#7209b7'];
+                
+                for (let i = 0; i < 50; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    particle.style.position = 'fixed';
+                    particle.style.zIndex = '100';
+                    particle.style.animation = 'celebrate 2s ease-out forwards';
+                    
+                    // Random properties
+                    const size = Math.random() * 8 + 4;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    particle.style.left = `${50 + (Math.random() - 0.5) * 20}%`;
+                    particle.style.top = `${50 + (Math.random() - 0.5) * 20}%`;
+                    particle.style.opacity = '0.8';
+                    
+                    // Add animation
+                    document.body.appendChild(particle);
+                    
+                    // Remove after animation
+                    setTimeout(() => {
+                        particle.remove();
+                    }, 2000);
+                }
+                
+                // Add celebration animation to CSS
+                const celebrationStyle = document.createElement('style');
+                celebrationStyle.textContent = `
+                    @keyframes celebrate {
+                        0% {
+                            transform: translate(0, 0) scale(1);
+                            opacity: 0.8;
+                        }
+                        100% {
+                            transform: translate(${(Math.random() - 0.5) * 200}px, ${Math.random() * -200}px) scale(0);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                document.head.appendChild(celebrationStyle);
+            }
+            
+            // Enhanced hover effect for signup container
+            const signupContainer = document.querySelector('.signup-container');
+            
+            signupContainer.addEventListener('mousemove', (e) => {
+                const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+                const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+                signupContainer.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg) translateY(-5px)`;
+            });
+            
+            signupContainer.addEventListener('mouseenter', () => {
+                signupContainer.style.transition = 'all 0.1s ease';
+            });
+            
+            signupContainer.addEventListener('mouseleave', () => {
+                signupContainer.style.transform = 'rotateY(0deg) rotateX(0deg) translateY(0)';
+                signupContainer.style.transition = 'all 0.5s ease';
+            });
+        });
+    </script>
+</body>
+</html>
